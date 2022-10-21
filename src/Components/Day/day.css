@@ -1,5 +1,20 @@
 .day{
     width: 150px;
     height: 150px;
-    background-color: coral;
+}
+/* .day1{
+    background-color: yellow;
+}
+.day2{
+    background-color: blue;
+} */
+
+.pasado{
+    background-color: gray;
+}
+.futuro{
+    background-color: rgb(223, 223, 223);
+}
+.today{
+    background-color: aqua;
 }
