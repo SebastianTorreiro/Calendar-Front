@@ -3,68 +3,102 @@ import { connect } from 'react-redux'
 import Day from '../Day/Day'
 import './home.css'
 import {getAllDays, filterByMonth } from '../../Actions/'
-
+import right from '../../Assets/right.png'
+import left from '../../Assets/left.png'
+import styled, {
+  css,
+  keyframes,
+  ThemeProvider,
+  createGlobalStyle,
+} from "styled-components";
 
 function Home({ getAllDays, filterByMonth, allDays, month }) {
 
   // const days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 
-  const library = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
-  const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", 'Agosto', 'Septiembre','Octubre', 'Noviembre', 'Diciembre']
-  let fecha = new Date()
+ const library = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
+ const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", 'Agosto', 'Septiembre','Octubre', 'Noviembre', 'Diciembre']
+ let fecha = new Date()
 
-  const [date, setDate] = useState({})
+ const [date, setDate] = useState({})
 
- 
+ const DivHeader = styled.div`
+ display: flex;
+ flex-direction: row;
+ align-items: center;
+ justify-content: space-between;
+ `
 
-
-  // useEffect(()=>{
-  //   setDate({
-  //     month: months[fecha.getMonth()],
-  //     dayOfWeek: library[fecha.getDay()]
-  //   })
-
-  // },[])
+  const moveToRight = () =>{
+    console.log('ashe')
+    setDate(prev =>{
+      return {...prev,
+      indexMonth: prev.indexMonth + 1
+      }
+    })
+  }
+    const moveToLeft = () =>{
+      setDate(prev =>{
+        return {...prev,
+          indexMonth: prev.indexMonth - 1
+        }
+      })
+  }
+  const now = fecha.toLocaleDateString()
 
   useEffect(()=>{
+    const indexMonth = fecha.getMonth()
     setDate({
-      month: months[fecha.getMonth()],
+      indexMonth: indexMonth,
+      month: months[indexMonth],
       dayOfWeek: library[fecha.getDay()],
-      dayOfMonth: fecha.getDate()
+      dayOfMonth: fecha.getDate(),
+      now: now
     })
+    getAllDays(months[date.indexMonth]);
+  },[])
 
-
-    getAllDays();
-    filterByMonth(date.month)
+  useEffect(()=>{
+    // filterByMonth()
   },[])
 
   return (
-    <div className='container-days'>
-      {month?.map(d => {
-        if(d.numberOfMonth === date.dayOfMonth){
-          return (<Day
-          name={d.name}
-          numberOfMonth={d.numberOfMonth}
-          month={d.month}
-          numberOfYear={d.numberOfYear}
-          moment={true}
-          id={d.id}
-          today={date.dayOfMonth}
-          />)
-        }else{
-          return (<Day
+    <div className='container-home'>
+      <DivHeader >
+        <img onClick={() => moveToLeft()} src={left} alt="" />
+        <h1>{date.month}</h1>
+        <img onClick={moveToRight} src={right} alt="" />
+      </DivHeader>
+      <div className='container-days'>
+        {month?.map(d => {
+          if(d.numberOfMonth === date.dayOfMonth){
+            return (<Day
+            key={d.numberOfYear}
             name={d.name}
             numberOfMonth={d.numberOfMonth}
             month={d.month}
             numberOfYear={d.numberOfYear}
-            moment={false}
+            moment={true}
             id={d.id}
             today={date.dayOfMonth}
             />)
-        }
-      })}
+          }
+            return (<Day
+              key={d.numberOfYear}
+              name={d.name}
+              numberOfMonth={d.numberOfMonth}
+              month={d.month}
+              numberOfYear={d.numberOfYear}
+              moment={false}
+              id={d.id}
+              today={date.dayOfMonth}
+              />)
+          
+        })}
 
+      </div>
     </div>
+
   )
 }
 
