@@ -8,6 +8,7 @@ import {
 const initialState = {
     allDays:[],
     filterByMount: [],
+    dayDetail:{}
 
 }
 
@@ -36,6 +37,12 @@ export default function rootReducer(state = initialState, action) {
                filterByMount: state.allDays.filter((d)=> {
                return (d.month === action.payload)
             })
+            }
+        case GET_DAY_BY_ID:
+            console.log(action.payload)
+            return{
+                ...state,
+                dayDetail: action.payload
             }
         default:
             return state;

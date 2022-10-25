@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { getDayById } from '../../Actions/';
 
-const DayDetail = () => {
+const DayDetail = ({getDayById, dayDetail}) => {
+
+	const {id} = useParams()
+
+
+	useEffect(()=>{
+		getDayById(id);
+		
+	},[])
+	console.log(dayDetail)
+
+
 	return (
 	<div>
-
+		<p>{dayDetail.name}</p>
 	</div>  
 )};
 
-export default DayDetail;
+const mapStateToProps = (state) =>{
+	return {
+		dayDetail: state.dayDetail
+	}
+}
+
+export default connect (mapStateToProps,{ getDayById})(DayDetail);
