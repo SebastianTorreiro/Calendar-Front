@@ -21,9 +21,9 @@ export default function rootReducer(state = initialState, action) {
             return {
                 ...state,
                 allDays: action.payload,
-                filterByMount: state.allDays.filter((d)=> {
-                    return (d.month === action.payload2)
-                 })
+                // filterByMount: state.allDays.filter((d)=> {
+                //     return (d.month === action.payload2)
+                //  })
             }
         case FILTER_BY_MONTH:
             const filtrado = state.allDays.filter((d)=> {

@@ -6,10 +6,13 @@ export default function Day({numberOfMonth, moment, today, id}) {
 
 
   return (
-      <div className={`day  ${moment ? 'today' : null}  ${today > numberOfMonth ? 'pasado' : today < numberOfMonth ? 'futuro' : null}`  }>
-        <Link to={`/${id}`}>
+    <Link 
+    className={` day ${moment ? 'today' : null}  ${today > numberOfMonth ? 'pasado' : today < numberOfMonth ? 'futuro' : null}`}
+    to={`/home/${id}`}
+    >
+      <div >
         {numberOfMonth}
-        </Link>
       </div>
+      </Link>
   )
 }

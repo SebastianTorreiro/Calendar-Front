@@ -7,11 +7,11 @@ import {
 
 const API = process.env.REACT_APP_API
 
-export function getAllDays(month){
+export function getAllDays(){
     return async (dispatch) => {
         try{
             const res = await axios.get(API + '/all');
-            dispatch({ type: GET_ALL_DAYS, payload: res.data, payload2 : month });
+            dispatch({ type: GET_ALL_DAYS, payload: res.data });
         }catch(error){
         // return dispatch({ type: SET_ERROR_TRUE });
         console.log(error)
