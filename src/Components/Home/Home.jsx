@@ -49,12 +49,12 @@ function Home({ getAllDays, filterByMonth, allDays,  }) {
   let indexForMonth = date.indexMonth
 
   const moveToRight = () =>{
-    console.log('ashe')
-    return setMonth(prev => prev + 1)
+    if(monthForRenderizar !== 11 )
+      return setMonth(prev => prev + 1)
     }
   
     const moveToLeft = () =>{
-      return setMonth(prev => prev - 1)
+    if(monthForRenderizar !== 0 ) return setMonth(prev => prev - 1)
 
       }
   let monthForRender = allDays.filter((d)=> {
@@ -67,7 +67,7 @@ function Home({ getAllDays, filterByMonth, allDays,  }) {
         <h1>{months[monthForRenderizar]}</h1>
         <img onClick={moveToRight} src={right} alt="" />
       </DivHeader>
-      <div className='container-days'>
+      <div className='flex-1 grid grid-cols-7 grid-rows-5'>
         {monthForRender?.map(d => {
           if(d.numberOfMonth === date.dayOfMonth){
             return (<Day
@@ -75,7 +75,7 @@ function Home({ getAllDays, filterByMonth, allDays,  }) {
             name={d.name}
             numberOfMonth={d.numberOfMonth}
             month={d.month}
-            numberOfYear={d. v}
+            numberOfYear={d.v}
             moment={true}
             id={d.id}
             today={date.dayOfMonth}
