@@ -5,7 +5,7 @@ import { getDayById } from '../../Actions/';
 
 const DayDetail = ({getDayById, dayDetail}) => {
 
-	const {id} = useParams()
+	const { id } = useParams()
 
 
 	useEffect(()=>{
@@ -16,7 +16,7 @@ const DayDetail = ({getDayById, dayDetail}) => {
 
 
 	return (
-	<div>
+	<div className='container'>
 		<p>{dayDetail.name}</p>
 	</div>  
 )};
@@ -27,4 +27,4 @@ const mapStateToProps = (state) =>{
 	}
 }
 
-export default connect (mapStateToProps,{ getDayById})(DayDetail);
+export default connect (mapStateToProps,{ getDayById })(DayDetail);
