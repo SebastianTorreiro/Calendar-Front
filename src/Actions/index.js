@@ -10,7 +10,7 @@ const API = process.env.REACT_APP_API
 export function getAllDays(){
     return async (dispatch) => {
         try{
-            const res = await axios.get(API + '/');
+            const res = await axios.get(API + '/days/');
             dispatch({ type: GET_ALL_DAYS, payload: res.data });
         }catch(error){
         // return dispatch({ type: SET_ERROR_TRUE });
@@ -23,7 +23,7 @@ export function getAllDays(){
 export function getDayById(id){
     return async (dispatch) => {
         try {
-            const res = await axios.get(API + `/${id}`)
+            const res = await axios.get(API + `/days/${id}`)
             dispatch({ type: GET_DAY_BY_ID, payload: res.data})
         } catch (error) {
             console.log(error)
