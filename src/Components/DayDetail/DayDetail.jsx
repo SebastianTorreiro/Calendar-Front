@@ -14,7 +14,7 @@ const DayDetail = ({ getDayById, dayDetail }) => {
 	// cuando este desabilitado el text area, el nombre del boton sera edit y no send o write []
 	// que cuando se toque el boton edit se cargue el texto en el text area para ser editado []
 	// y que continue con su funcionamiento normal. []
-	// solucionar el send cuando el estado esta vacio []
+	// solucionar el send cuando el estado esta vacio [parcialmente]
 
 	const { id } = useParams()
 
@@ -32,7 +32,6 @@ const DayDetail = ({ getDayById, dayDetail }) => {
 			console.log(updated)
 			setResume('') 
 		}
-		console.log('ashe')
 	}
 
 	useEffect(() => {
@@ -54,7 +53,7 @@ const DayDetail = ({ getDayById, dayDetail }) => {
 					cols="30"
 					rows="10"></textarea>
 
-				<button onClick={sendResume}>Send</button>
+				<button onClick={sendResume}>Write</button>
 
 			</div>
 
