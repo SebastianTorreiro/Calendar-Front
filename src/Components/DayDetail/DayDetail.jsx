@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getDayById } from '../../Actions/';
 import axios from 'axios';
 const API = process.env.REACT_APP_API
@@ -9,7 +9,7 @@ const API = process.env.REACT_APP_API
 
 const DayDetail = ({ getDayById, dayDetail }) => {
 
-	
+
 	useEffect(() => {
 		getDayById(id);
 	}, [])
@@ -31,6 +31,12 @@ const DayDetail = ({ getDayById, dayDetail }) => {
 
 	}
 
+	let history = useNavigate()
+	const returnHome = () => {
+		history(-1)
+
+	}
+
 	const editResume = (e) => {
 		setResume(dayDetail.resume)
 		setBoleaan(false)
@@ -45,7 +51,7 @@ const DayDetail = ({ getDayById, dayDetail }) => {
 		}
 	}
 
-	
+
 
 
 
@@ -60,8 +66,8 @@ const DayDetail = ({ getDayById, dayDetail }) => {
 					<div className="button-edit-resume" onClick={editResume}>
 						Edit
 					</div>
-				</div> 
-					:
+				</div>
+				:
 				<div className="day-resume-container">
 
 					<textarea
@@ -75,6 +81,13 @@ const DayDetail = ({ getDayById, dayDetail }) => {
 					<button onClick={sendResume}>Write</button>
 
 				</div>}
+
+
+			<div className='button-back'>
+				<button onClick={returnHome}>
+					Volver
+				</button>
+			</div>
 
 
 			<p>{dayDetail.name}</p>
