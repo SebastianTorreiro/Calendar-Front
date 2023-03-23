@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import Day from '../Day/Day'
 import './home.css'
-import {getAllDays, filterByMonth } from '../../Actions/'
+import { getAllDays, filterByMonth } from '../../Actions/'
 import right from '../../Assets/right.png'
 import left from '../../Assets/left.png'
 import Spinner from '../Spinner/Spinner.js'
@@ -14,18 +14,18 @@ import styled, {
   createGlobalStyle,
 } from "styled-components";
 
-function Home({ getAllDays, filterByMonth, allDays,  }) {
+function Home({ getAllDays, filterByMonth, allDays, }) {
 
   // const days = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 
- const library = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
- const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", 'Agosto', 'Septiembre','Octubre', 'Noviembre', 'Diciembre']
- let fecha = new Date()
+  const library = ["Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado"]
+  const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+  let fecha = new Date()
 
- const [date, setDate] = useState({})
- const [monthForRenderizar, setMonth] = useState()
+  const [date, setDate] = useState({})
+  const [monthForRenderizar, setMonth] = useState()
 
- const DivHeader = styled.div`
+  const DivHeader = styled.div`
  display: flex;
  flex-direction: row;
  align-items: center;
@@ -35,7 +35,7 @@ function Home({ getAllDays, filterByMonth, allDays,  }) {
 
   // const now = fecha.toLocaleDateString()
 
-  useEffect(()=>{
+  useEffect(() => {
     const indexMonth = fecha.getMonth()
     setDate({
       indexMonth: indexMonth,
@@ -46,26 +46,27 @@ function Home({ getAllDays, filterByMonth, allDays,  }) {
     })
     setMonth(indexMonth)
     getAllDays();
-  },[])
+  }, [])
 
   let indexForMonth = date.indexMonth
 
-  const moveToRight = () =>{
-    if(monthForRenderizar !== 11 )
+  const moveToRight = () => {
+    if (monthForRenderizar !== 11)
       return setMonth(prev => prev + 1)
-    }
-  
-    const moveToLeft = () =>{
-    if(monthForRenderizar !== 0 ) return setMonth(prev => prev - 1)
+  }
 
-      }
-  let monthForRender = allDays.filter((d)=> {
-        return (d.month === months[monthForRenderizar])})
+  const moveToLeft = () => {
+    if (monthForRenderizar !== 0) return setMonth(prev => prev - 1)
+
+  }
+  let monthForRender = allDays.filter((d) => {
+    return (d.month === months[monthForRenderizar])
+  })
 
   return (
     <div className='container-home'>
 
-      {}
+      { }
       <DivHeader >
         <img onClick={() => moveToLeft()} src={left} alt="" />
         <h1>{months[monthForRenderizar]}</h1>
@@ -73,29 +74,29 @@ function Home({ getAllDays, filterByMonth, allDays,  }) {
       </DivHeader>
       <div className='flex-1 grid grid-cols-7 grid-rows-5'>
         {monthForRender?.map(d => {
-          if(d.numberOfMonth === date.dayOfMonth){
-            return (<Day
-            key={d.numberOfYear}
-            name={d.name}
-            numberOfMonth={d.numberOfMonth}
-            month={d.month}
-            numberOfYear={d.v}
-            moment={true}
-            id={d.id}
-            today={date.dayOfMonth}
-            />)
-          }
+          if (d.numberOfMonth === date.dayOfMonth) {
             return (<Day
               key={d.numberOfYear}
               name={d.name}
               numberOfMonth={d.numberOfMonth}
               month={d.month}
-              numberOfYear={d.numberOfYear}
-              moment={false}
+              numberOfYear={d.v}
+              moment={true}
               id={d.id}
               today={date.dayOfMonth}
-              />)
-          
+            />)
+          }
+          return (<Day
+            key={d.numberOfYear}
+            name={d.name}
+            numberOfMonth={d.numberOfMonth}
+            month={d.month}
+            numberOfYear={d.numberOfYear}
+            moment={false}
+            id={d.id}
+            today={date.dayOfMonth}
+          />)
+
         })}
       </div>
 
@@ -112,5 +113,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect (mapStateToProps, {getAllDays, filterByMonth})(Home)
+export default connect(mapStateToProps, { getAllDays, filterByMonth })(Home)
 
