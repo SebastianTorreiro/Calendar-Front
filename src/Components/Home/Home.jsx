@@ -5,6 +5,8 @@ import './home.css'
 import {getAllDays, filterByMonth } from '../../Actions/'
 import right from '../../Assets/right.png'
 import left from '../../Assets/left.png'
+import Spinner from '../Spinner/Spinner.js'
+
 import styled, {
   css,
   keyframes,
@@ -62,6 +64,8 @@ function Home({ getAllDays, filterByMonth, allDays,  }) {
 
   return (
     <div className='container-home'>
+
+      {}
       <DivHeader >
         <img onClick={() => moveToLeft()} src={left} alt="" />
         <h1>{months[monthForRenderizar]}</h1>
@@ -93,8 +97,8 @@ function Home({ getAllDays, filterByMonth, allDays,  }) {
               />)
           
         })}
-
       </div>
+
     </div>
 
   )

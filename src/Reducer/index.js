@@ -8,8 +8,9 @@ import {
 const initialState = {
     allDays:[],
     filterByMount: [],
-    dayDetail:{}
-
+    dayDetail:{},
+    loading: true,
+    error: false
 }
 
 
