@@ -5,6 +5,7 @@ import {
   FILTER_BY_MONTH,
   SET_LOADING_FALSE,
   SET_LOADING_TRUE,
+  SET_ERROR_TRUE,
 } from "./constants.js";
 
 const API = process.env.REACT_APP_API;
